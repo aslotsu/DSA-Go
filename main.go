@@ -16,6 +16,9 @@ func main() {
 	myLL.InsertEnd(12)
 	myLL.Display()
 	myLL.InsertAt(4, 30)
+
+	myLL.Display()
+	myLL.DeleteAt(3)
 	myLL.Display()
 
 }

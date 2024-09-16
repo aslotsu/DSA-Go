@@ -80,3 +80,51 @@ func (ll *LinkedList) InsertAt (position int, data int) error {
 	ll.Size++
 	return nil
 }
+
+
+func (ll *LinkedList) DeleteFirstNode() error {
+	if ll.Head == nil {
+		return fmt.Errorf("linked list is empty")
+	}
+
+	current := ll.Head
+	current = current.Next
+	ll.Head = current
+	ll.Size--
+
+	return nil
+}
+
+
+func (ll *LinkedList) DeleteLastNode() error {
+	current := ll.Head
+	prev := current
+	if ll.Head == nil {
+		return fmt.Errorf("list is empty already")
+	}
+
+	for current.Next != nil {
+		prev = current
+		current = current.Next
+	}
+	prev.Next = nil
+	ll.Size--
+	return nil
+}
+
+func (ll *LinkedList) DeleteAt(position int) error {
+	if position<1 || position > ll.Length() {
+		return fmt.Errorf("invalid position passed")
+	}
+
+	current, pos := ll.Head, 1
+	prev := current
+
+	for pos<position {
+		pos++
+		prev = current
+		current = current.Next
+	}
+	prev.Next = current.Next
+	return nil
+}
